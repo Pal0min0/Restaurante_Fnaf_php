@@ -1,0 +1,397 @@
+/* ESTILO FNAF - MESAS Y FORMULARIOS */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+}
+
+/* Body con efectos FNAF */
+body {
+    background: #0a0a0a;
+    color: #a8dadc;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Fondo con overlay oscuro */
+#fondo {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -2;
+    opacity: 0.15;
+    filter: brightness(0.3) contrast(1.2);
+    object-fit: cover;
+}
+
+/* Efecto de scanlines estilo cámara de seguridad */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Efecto de vignette oscuro */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
+    pointer-events: none;
+    z-index: 998;
+}
+
+/* Imagen hover */
+#imagen1:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px rgba(230, 57, 70, 0.6));
+    transition: all 0.3s ease;
+}
+
+/* Nav */
+nav {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1000;
+}
+
+/* ---- INICIO SESIÓN ---- */
+.contenedor_inicio_sesion {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 10;
+    padding: 20px;
+}
+
+.contenedor_inicio_sesion > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #16213e 0%, #0f1626 100%);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 
+        0 0 50px rgba(230, 57, 70, 0.6),
+        inset 0 0 60px rgba(0, 0, 0, 0.7);
+    border: 3px solid #2a2a3e;
+    position: relative;
+    overflow: hidden;
+    min-width: 350px;
+}
+
+/* Ruido estático para formularios */
+.contenedor_inicio_sesion > form::before,
+.contenedor_registro > form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    animation: static 0.5s infinite;
+    z-index: 1;
+}
+
+/* Borde superior con glow */
+.contenedor_inicio_sesion > form::after,
+.contenedor_registro > form::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #e63946;
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.9);
+    z-index: 2;
+}
+
+@keyframes static {
+    0% { opacity: 0.03; }
+    50% { opacity: 0.08; }
+    100% { opacity: 0.03; }
+}
+
+/* ---- REGISTRO ---- */
+.contenedor_registro {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 10;
+    padding: 20px;
+}
+
+.contenedor_registro > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #16213e 0%, #0f1626 100%);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 
+        0 0 50px rgba(230, 57, 70, 0.6),
+        inset 0 0 60px rgba(0, 0, 0, 0.7);
+    border: 3px solid #2a2a3e;
+    position: relative;
+    overflow: hidden;
+    min-width: 350px;
+}
+
+/* ---- MESAS ---- */
+.contenedor_mesas {
+    width: 100%;
+    min-width: 200px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+#caja_mesas {
+    width: 85%;
+    min-height: 80vh;
+    background: linear-gradient(135deg, #16213e 0%, #0f1626 100%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 40px;
+    border-radius: 20px;
+    border: 6px dashed #e63946;
+    box-shadow: 
+        0 0 50px rgba(230, 57, 70, 0.6),
+        inset 0 0 60px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ruido estático para caja de mesas */
+#caja_mesas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    animation: static 0.5s infinite;
+    z-index: 1;
+}
+
+/* Mesas individuales */
+.mesas {
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #1a2744 0%, #121927 100%);
+    border: 3px solid #2a2a3e;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: #a8dadc;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 0 20px rgba(15, 219, 242, 0.3),
+        inset 0 0 30px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(168, 218, 220, 0.5);
+}
+
+.mesas:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 35px rgba(15, 219, 242, 0.6),
+        inset 0 0 30px rgba(0, 0, 0, 0.6);
+    border-color: #0FDBF2;
+    text-shadow: 0 0 15px rgba(15, 219, 242, 0.9);
+}
+
+/* Mesa seleccionada */
+.seleccionada { 
+    background: linear-gradient(135deg, #e63946, #c8202f);
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    box-shadow: 
+        0 0 40px rgba(230, 57, 70, 0.8),
+        inset 0 0 30px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 15px rgba(230, 57, 70, 0.9);
+}
+
+.seleccionada:hover {
+    box-shadow: 
+        0 0 50px rgba(230, 57, 70, 1),
+        inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Mesa ocupada */
+.ocupada {
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+    color: #666666;
+    cursor: not-allowed;
+    border: 3px solid #000000;
+    box-shadow: 
+        0 0 10px rgba(0, 0, 0, 0.8),
+        inset 0 0 40px rgba(0, 0, 0, 0.9);
+    text-shadow: none;
+    opacity: 0.6;
+}
+
+.ocupada:hover {
+    transform: none;
+    box-shadow: 
+        0 0 10px rgba(0, 0, 0, 0.8),
+        inset 0 0 40px rgba(0, 0, 0, 0.9);
+}
+
+/* Botón siguiente */
+.boton_siguiente {
+    font-size: 28px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #0FDBF2, #0ab3c4);
+    border-radius: 15px;
+    border: 3px solid #2a2a3e;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 0 30px rgba(15, 219, 242, 0.5),
+        inset 0 0 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Efecto de brillo deslizante */
+.boton_siguiente::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.boton_siguiente:hover::before {
+    left: 100%;
+}
+
+.boton_siguiente:hover {
+    background: linear-gradient(135deg, #1ff5ff, #0FDBF2);
+    border-color: #0FDBF2;
+    box-shadow: 
+        0 0 50px rgba(15, 219, 242, 0.8),
+        inset 0 0 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 20px rgba(15, 219, 242, 0.9);
+    transform: translateY(-3px);
+}
+
+.boton_siguiente:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 0 30px rgba(15, 219, 242, 0.6),
+        inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #caja_mesas {
+        width: 95%;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .mesas {
+        width: 100px;
+        height: 100px;
+        font-size: 22px;
+    }
+
+    .boton_siguiente {
+        font-size: 22px;
+        padding: 12px 30px;
+        letter-spacing: 2px;
+    }
+
+    .contenedor_inicio_sesion > form,
+    .contenedor_registro > form {
+        min-width: 90%;
+        padding: 30px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mesas {
+        width: 80px;
+        height: 80px;
+        font-size: 18px;
+    }
+
+    .boton_siguiente {
+        font-size: 18px;
+        padding: 10px 25px;
+    }
+}
+
+/* Animación de parpadeo para títulos */
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+    }
+    20%, 24%, 55% {
+        opacity: 0.7;
+    }
+}

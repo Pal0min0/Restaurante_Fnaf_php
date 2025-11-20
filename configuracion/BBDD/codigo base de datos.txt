@@ -1,0 +1,144 @@
+CREATE DATABASE d_c
+    DEFAULT CHARACTER SET = 'utf8mb4';
+
+    USE d_c;
+
+    -- ===================================================
+  -- 1. Tabla Usuario
+  -- ===================================================
+
+  CREATE TABLE Usuario (
+    id_usuario INT(5) NOT NULL AUTO_INCREMENT,
+    rol VARCHAR(20),
+    nombres VARCHAR(40),
+    documento VARCHAR(20),
+    telefono VARCHAR(20),
+    Correo VARCHAR(40),
+    contrasena VARCHAR(255),
+    PRIMARY KEY (id_usuario)
+  );
+
+  -- ===================================================
+  -- 2. Tabla Tipo_Menu
+  -- ===================================================
+
+  CREATE TABLE Tipo_Menu (
+    id_tipo_menu INT(5) NOT NULL AUTO_INCREMENT,
+    tipo_menu VARCHAR(30),
+    PRIMARY KEY (id_tipo_menu)
+  );
+
+  -- ===================================================
+  -- 3. Tabla Sucursal
+  -- ===================================================
+
+  CREATE TABLE Sucursal (
+    id_sucursal INT(5) NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(30),
+    direccion VARCHAR(50),
+    imagen VARCHAR(255),
+    PRIMARY KEY (id_sucursal)
+  );
+
+  -- ===================================================
+  -- 4. Tabla Menu
+  -- ===================================================
+
+  CREATE TABLE Menu (
+    id_menu INT(5) NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(40),
+    descripcion VARCHAR(255),
+    imagen VARCHAR(255),
+    precio INT(20),
+    Tipo_Menuid_tipo_menu INT(5) NOT NULL,
+    PRIMARY KEY (id_menu),
+    FOREIGN KEY (Tipo_Menuid_tipo_menu)
+        REFERENCES Tipo_Menu(id_tipo_menu)
+        ON DELETE CASCADE
+  );
+
+  -- ===================================================
+  -- 5. Tabla Mesa
+  -- ===================================================
+
+  CREATE TABLE Mesa (
+    id_mesa INT PRIMARY KEY AUTO_INCREMENT,
+    numero_mesa INT NOT NULL,
+    capacidad INT NOT NULL,
+    estado VARCHAR(20) DEFAULT 'disponible',
+    sucursal_id INT NOT NULL,
+    FOREIGN KEY (sucursal_id)
+        REFERENCES Sucursal(id_sucursal)
+        ON DELETE CASCADE,
+    UNIQUE (sucursal_id, numero_mesa)
+  );
+
+  -- ===================================================
+  -- 6. Tabla Carrito
+  -- ===================================================
+
+  CREATE TABLE Carrito (
+    Usuarioid_usuario INT(5) NOT NULL,
+    Menuid_menu INT(5) NOT NULL,
+    cantidad INT(2),
+    PRIMARY KEY (Usuarioid_usuario, Menuid_menu),
+    FOREIGN KEY (Usuarioid_usuario)
+        REFERENCES Usuario(id_usuario)
+        ON DELETE CASCADE,
+    FOREIGN KEY (Menuid_menu)
+        REFERENCES Menu(id_menu)
+        ON DELETE CASCADE
+  );
+
+  -- ===================================================
+  -- 7. Tabla Pedido
+  -- ===================================================
+
+  CREATE TABLE Pedido (
+    id_pedido INT(5) NOT NULL AUTO_INCREMENT,
+    codigo VARCHAR(10),
+    fecha DATE,
+	direccion VARCHAR(40),
+    estado VARCHAR(20),
+    Usuarioid_usuario INT(5) NOT NULL,
+    PRIMARY KEY (id_pedido),
+    FOREIGN KEY (Usuarioid_usuario)
+        REFERENCES Usuario(id_usuario)
+        ON DELETE CASCADE
+  );
+
+  -- ===================================================
+  -- 8. Tabla Reserva
+  -- ===================================================
+
+  CREATE TABLE Reserva (
+    id_reserva INT(5) NOT NULL AUTO_INCREMENT,
+    codigo_reserva VARCHAR(10),
+    fecha DATE,
+    hora TIME,
+    Usuarioid_usuario INT(5) NOT NULL,
+    Sucursalid_sucursal INT(5) NOT NULL,
+    PRIMARY KEY (id_reserva),
+    FOREIGN KEY (Usuarioid_usuario)
+        REFERENCES Usuario(id_usuario)
+        ON DELETE CASCADE,
+    FOREIGN KEY (Sucursalid_sucursal)
+        REFERENCES Sucursal(id_sucursal)
+        ON DELETE CASCADE
+  );
+
+  -- ===================================================
+  -- 9. Tabla reserva_mesa (muchas mesas por reserva)
+  -- ===================================================
+
+  CREATE TABLE reserva_mesa (
+      id_reserva INT,
+      id_mesa INT,
+      PRIMARY KEY (id_reserva, id_mesa),
+      FOREIGN KEY (id_reserva)
+          REFERENCES Reserva(id_reserva)
+          ON DELETE CASCADE,
+      FOREIGN KEY (id_mesa)
+          REFERENCES Mesa(id_mesa)
+          ON DELETE CASCADE
+  );

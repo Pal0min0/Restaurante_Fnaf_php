@@ -1,0 +1,33 @@
+-- ENTRADAS (1)
+INSERT INTO menu (nombre, descripcion, imagen, precio, Tipo_Menuid_tipo_menu) VALUES
+('Ceviche mixto', 'Ceviche fresco con variedad de mariscos.', 'ceviche_mixto.avif', 18000, 1),
+('Ceviche de la casa', 'Receta especial de la casa con limón y especias.', 'Ceviche.jpg', 16000, 1),
+('Ceviche de camarón', 'Ceviche preparado con camarones frescos.', 'ceviche_camarones.jpg', 15000, 1);
+
+-- PLATOS FUERTES (2)
+INSERT INTO menu (nombre, descripcion, imagen, precio, Tipo_Menuid_tipo_menu) VALUES
+('Parrillada de mariscos', 'Combinación surtida de mariscos frescos a la parrilla.', 'parri_mariscox.jpg', 52000, 2),
+('Arroz a la marinera', 'Arroz con mezcla de mariscos frescos.', 'arroz_marinera.jpeg', 28000, 2),
+('Salmón teriyaki', 'Salmón en salsa teriyaki artesanal.', 'salmon_ty.jpg', 45000, 2),
+('Anillos de calamar', 'Calamar empanizado y crocante.', 'anillos_cama.avif', 19000, 2),
+('Pesca del día', 'Filete fresco según disponibilidad diaria.', 'pesca_dia.jpg', 39000, 2),
+('Filete con camarones gratinados', 'Filete acompañado de camarones gratinados.', 'file_cama.jpg', 43000, 2);
+
+-- BEBIDAS (3)
+INSERT INTO menu (nombre, descripcion, imagen, precio, Tipo_Menuid_tipo_menu) VALUES
+('Frutos rojos', 'Bebida refrescante de frutos rojos.', 'frutos_rojos.jpg', 8000, 3),
+('Piña con hierbabuena', 'Jugo de piña con toque de hierbabuena.', 'piña.jpg', 8000, 3),
+('Mandarina', 'Jugo fresco de mandarina.', 'mandarina.jpg', 8000, 3),
+('Limonada de coco', 'Limonada cremosa con coco.', 'limo_coco.jpg', 10000, 3),
+('Limonada natural', 'Limonada tradicional refrescante.', 'limonada.jpg', 6000, 3),
+('Limonada cerezada', 'Limonada con cereza y un toque dulce.', 'limo_cere.webp', 7000, 3);
+
+
+
+
+INSERT INTO Sucursal (nombre, direccion, imagen) VALUES
+('Don Camaron - Bogotá', 'Cra. 7 #158 - 03', 'restaurante_1.jpg'),
+('Don Camaron - Medellín', 'Calle 50 #10-30', 'restaurante_2.jpg'),
+('Don Camaron - Cali', 'Av. 6N # 34-22', 'restaurante_3.jpg'),
+('Don Camaron - Barranquilla', 'Cl. 84 # 50-15', 'restaurante_4.jpg'),
+('Don Camaron - Cartagena', 'Cl. 38 # 8-55', 'restaurante_5.jpg');
